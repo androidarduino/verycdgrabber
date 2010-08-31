@@ -15,13 +15,13 @@ class VeryCDListPage: public QObject
 {
     Q_OBJECT
     public:
-        VeryCDListPage(QString link);
+        VeryCDListPage(QString f, int n);
         QStringList allLinks();
     private slots:
         void pageArrived(bool error);
     private:
         QHttp* http;
-        QString link, rawContent, mainExpr, detailExpr;
+        QString server, link, rawContent, mainExpr, detailExpr;
         QList<VeryCDDetailPage*> detailPages;
         QStringList pageLinks, AllLinks;
 };
