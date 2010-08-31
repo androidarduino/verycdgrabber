@@ -30,11 +30,17 @@ class VeryCDDetailPage: public QObject
 {
     Q_OBJECT
     public:
-        VeryCDDetailPage(QString link);
+        QString detailExpr;
+    public:
+        VeryCDDetailPage(QStringList& p);
+        void print();
+        void load();
     private slots:
         void pageArrived(bool error);
     private:
         QHttp* http;
+        QString server, picture, category, link, title, publisher, language, year, description, created, modified, files, size, comments;
+        QString rawContent;
 };
 
 class VeryCDGrabber: public QObject
@@ -58,5 +64,6 @@ class VeryCDHistory: public QObject
         void loadHistory(QString file);
         QSet<QString> links;
 };
+
 
 #endif

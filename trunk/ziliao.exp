@@ -1,4 +1,4 @@
 www.verycd.com
 /sto/datum/page%1
-<li>(?:.*)<a href=(?:.*)<img src=\"(.*/thumb.jpg)\" (?:.*)\[(.*)\](?:.*)<a href=\"(.*)\" onclick(?:.*)+this.href\);\" >(.*)</a>\s*<img alt=\"精华资源\"(?:.*)'/stat/indexUsername/'\);\">(.*)</a></p>(?:.*)[地区\(语言\):(.*)\s*]?[发行时间:(.*)<br />]?\s*(.*)<a href(?:.*)<span class=\"date-time\">(.*)</span> 发布, <span class=\"date-time\">(.*)</span> 更新 - <strong>(.*)</strong>个文件, <strong>(.*)</strong>, (?:<strong>(.*)</strong>条评论|暂无评论)</span>
-<tr>(?:.*)<input type="checkbox" (?:.*)value="(.*)"\s*onclick(?:.*)<a(?:.*)>(.*)</a>(?:.*)详情(?:.*)<td align="center"(?:.*)>(.*)</td>\s*</tr>
+<li>(?:.*)<a href=(?:.*)<img src=\"(.*/thumb.jpg)\" (?:.*)\[(.*)\](?:.*)<a href=\"(.*)\" onclick(?:.*)+this.href\);\" >(.*)</a>\s*<img alt=\"精华资源\"(?:.*)'/stat/indexUsername/'\);\">(.*)</a></p>(?:.*)(?:地区\(语言\):(\S+))?\s*(?:发行时间:(\S+)\s*<br />)?\s*(.*)<a href(?:.*)<span class=\"date-time\">(.*)</span> 发布, <span class=\"date-time\">(.*)</span> 更新 - <strong>(.*)</strong>个文件, <strong>(.*)</strong>, (?:<strong>(.*)</strong>条评论|暂无评论)</span>
+<input style=\"cursor: pointer;\"(?:.*)value=\"(.*)\" onclick(?:.*)><a href=(?:.*)>(.*)</a><span
