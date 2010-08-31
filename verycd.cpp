@@ -49,7 +49,7 @@ void VeryCDListPage::pageArrived(bool error)
         lastPos=rx.indexIn(rawContent, lastPos+1 );
         QStringList captured=rx.capturedTexts();
         //here create a detailed page object to grab details
-        captured[0]="\r\n**********************************\r\n";
+        captured[0]="\r\n"+QString().setNum(captured.size())+"**********************************\r\n";
         qDebug()<<captured;
     }
     qDebug()<<"total found:"<<count;
