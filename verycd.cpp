@@ -1,20 +1,25 @@
 #include "verycd.h"
 
-VeryCDListPage::VeryCDListPage(QString link)
+VeryCDListPage::VeryCDListPage(QString f, int n)
 {
-    this->link=link;
-    http=new QHttp("www.verycd.com");
-    connect(http, SIGNAL(done(bool)), this, SLOT(pageArrived(bool)));
-    http->get(link);
-    //read the reg expr
-    QFile file("ziliao.exp");
+   //read the reg expr
+    QFile file(f);
     file.open(QIODevice::ReadOnly);
     QTextCodec *codec = QTextCodec::codecForName("GB18030");
+    server = codec->toUnicode(file.readLine());
+    server = server.left(server.length()-1);
+    link = codec->toUnicode(file.readLine());
+    link = link.left(link.length()-1);
     mainExpr = codec->toUnicode(file.readLine());
     mainExpr = mainExpr.left(mainExpr.length()-1);
     detailExpr = codec->toUnicode(file.readLine());
     qDebug()<<mainExpr<<detailExpr;
     file.close();
+    http=new QHttp(server);
+    connect(http, SIGNAL(done(bool)), this, SLOT(pageArrived(bool)));
+    link=link.arg(n);
+    qDebug()<<server<<link;
+    http->get(link);
 }
 
 QStringList VeryCDListPage::allLinks()
