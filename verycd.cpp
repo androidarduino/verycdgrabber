@@ -56,12 +56,13 @@ void VeryCDListPage::pageArrived(bool error)
         page->detailExpr=detailExpr;
         detailPages<<page;
         page->print();
-//        captured[0]="\r\n"+QString().setNum(captured.size())+"**********************************\r\n";
-//        qDebug()<<captured;
     }
     qDebug()<<"total found:"<<count;
     delete http;
-    detailPages[0]->load();
+    for(int i=0;i<detailPages.size();i++)
+    {
+        detailPages[i]->load();
+    }
 }
 
 void VeryCDDetailPage::pageArrived(bool error)
@@ -84,7 +85,7 @@ void VeryCDDetailPage::pageArrived(bool error)
         count++;
         lastPos=rx.indexIn(rawContent, lastPos+1 );
         QStringList captured=rx.capturedTexts();
-        qDebug()<<captured[1]<<captured[2];
+        qDebug()<<captured[1]<<captured[2]<<captured[3]<<captured[4];
     }
     qDebug()<<"total found:"<<count;
     delete http;
@@ -111,7 +112,7 @@ VeryCDDetailPage::VeryCDDetailPage(QStringList& p)
 
 void VeryCDDetailPage::load()
 {
-    qDebug()<<server<<link;
+    qDebug()<<server<<link<<" is now loading";
     http=new QHttp(server);
     connect(http, SIGNAL(done(bool)), this, SLOT(pageArrived(bool)));
     http->get(link);
