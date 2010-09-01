@@ -16,14 +16,14 @@ class VeryCDListPage: public QObject
     Q_OBJECT
     public:
         VeryCDListPage(QString f, int n);
-        QStringList allLinks();
+        QList<VeryCDDetailPage*> detailPages;
     private slots:
         void pageArrived(bool error);
+    signals:
+        void updated();
     private:
         QHttp* http;
         QString server, link, rawContent, mainExpr, detailExpr;
-        QList<VeryCDDetailPage*> detailPages;
-        QStringList pageLinks, AllLinks;
 };
 
 class VeryCDDetailPage: public QObject
@@ -31,6 +31,7 @@ class VeryCDDetailPage: public QObject
     Q_OBJECT
     public:
         QString detailExpr;
+        QString server, picture, category, link, title, publisher, language, year, description, created, modified, files, size, comments;
     public:
         VeryCDDetailPage(QStringList& p);
         void print();
@@ -39,7 +40,6 @@ class VeryCDDetailPage: public QObject
         void pageArrived(bool error);
     private:
         QHttp* http;
-        QString server, picture, category, link, title, publisher, language, year, description, created, modified, files, size, comments;
         QString rawContent;
 };
 

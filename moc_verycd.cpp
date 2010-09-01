@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'verycd.h'
 **
-** Created: Tue Aug 31 16:41:38 2010
+** Created: Wed Sep 1 16:24:21 2010
 **      by: The Qt Meta Object Compiler version 59 (Qt 4.4.0)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,18 +23,22 @@ static const uint qt_meta_data_VeryCDListPage[] = {
        1,       // revision
        0,       // classname
        0,    0, // classinfo
-       1,   10, // methods
+       2,   10, // methods
        0,    0, // properties
        0,    0, // enums/sets
 
+ // signals: signature, parameters, type, tag, flags
+      16,   15,   15,   15, 0x05,
+
  // slots: signature, parameters, type, tag, flags
-      22,   16,   15,   15, 0x08,
+      32,   26,   15,   15, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_VeryCDListPage[] = {
-    "VeryCDListPage\0\0error\0pageArrived(bool)\0"
+    "VeryCDListPage\0\0updated()\0error\0"
+    "pageArrived(bool)\0"
 };
 
 const QMetaObject VeryCDListPage::staticMetaObject = {
@@ -62,11 +66,18 @@ int VeryCDListPage::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: pageArrived((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 0: updated(); break;
+        case 1: pageArrived((*reinterpret_cast< bool(*)>(_a[1]))); break;
         }
-        _id -= 1;
+        _id -= 2;
     }
     return _id;
+}
+
+// SIGNAL 0
+void VeryCDListPage::updated()
+{
+    QMetaObject::activate(this, &staticMetaObject, 0, 0);
 }
 static const uint qt_meta_data_VeryCDDetailPage[] = {
 

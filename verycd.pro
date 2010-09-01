@@ -8,7 +8,8 @@ TARGET =
 DEPENDPATH += .
 INCLUDEPATH += .
 QT += network
+FORMS += mainwindow.ui
 
 # Input
-HEADERS += verycd.h
-SOURCES += main.cpp verycd.cpp
+HEADERS += verycd.h mainwindow.h
+SOURCES += main.cpp verycd.cpp mainwindow.cpp

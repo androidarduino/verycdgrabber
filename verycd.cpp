@@ -24,11 +24,6 @@ VeryCDListPage::VeryCDListPage(QString f, int n)
     http->get(link);
 }
 
-QStringList VeryCDListPage::allLinks()
-{
-    return allLinks();
-}
-
 void VeryCDListPage::pageArrived(bool error)
 {
     qDebug()<<"Main page arrived with error: "<<error<<http->error()<<server;
@@ -55,14 +50,15 @@ void VeryCDListPage::pageArrived(bool error)
         VeryCDDetailPage * page=new VeryCDDetailPage(captured);
         page->detailExpr=detailExpr;
         detailPages<<page;
-        page->print();
+        //page->print();
     }
     qDebug()<<"total found:"<<count;
     delete http;
     for(int i=0;i<detailPages.size();i++)
     {
-        detailPages[i]->load();
+        //detailPages[i]->load();
     }
+    emit updated();
 }
 
 void VeryCDDetailPage::pageArrived(bool error)
