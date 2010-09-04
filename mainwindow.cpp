@@ -12,12 +12,6 @@ void MainWindow::addPage(VeryCDListPage* page)
     connect(page, SIGNAL(updated()), this, SLOT(updated()));
 }
 
-void MainWindow::prevPage()
-{
-    if(--pageNumber>1)
-        page(pageNumber);
-}
-
 void MainWindow::firstPage()
 {
     page(1);
@@ -51,14 +45,28 @@ void MainWindow::updated()
             QTreeWidgetItem* item=new QTreeWidgetItem((QTreeWidget*)0, data);
             items<<item;
         }
+        QTreeWidgetItem* pageItem=new QTreeWidgetItem(0);
+        pageItem->setText(0, QString("Page %1").arg(pages[i]->pageNum));
+        pageItem->addChildren(items);
+        bool duplicate=false;
+        for(int k=0;k<win.treeWidget->topLevelItemCount();k++)
+            if(win.treeWidget->topLevelItem(k)->text(0)==pageItem->text(0))
+                duplicate=true;
+        if(!duplicate&&pages[i]->loaded)
+            win.treeWidget->insertTopLevelItem(0, pageItem);
+        //else
+            //delete pageItem;
     }
-    QTreeWidgetItem* pageItem=new QTreeWidgetItem(0);
-    pageItem->setText(0, QString("Page %1").arg(pageNumber));
-    pageItem->addChildren(items);
-    win.treeWidget->insertTopLevelItem(0, pageItem);
 }
 
 void MainWindow::on_actionNext_activated()
 {
     page(++pageNumber);
+}
+
+void MainWindow::on_actionPrevious_activated()
+{
+    if(--pageNumber>1)
+        page(pageNumber);
+
 }

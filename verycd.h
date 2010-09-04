@@ -11,6 +11,14 @@
 class VeryCDHistory;
 class VeryCDDetailPage;
 
+class Ed2kItem: public QObject
+{
+    Q_OBJECT
+    public:
+        Ed2kItem(){}
+        QString name, link, size;
+};
+
 class VeryCDListPage: public QObject
 {
     Q_OBJECT
@@ -18,6 +26,7 @@ class VeryCDListPage: public QObject
         VeryCDListPage(QString f, int n);
         QList<VeryCDDetailPage*> detailPages;
         int pageNum;
+        bool loaded;
     private slots:
         void pageArrived(bool error);
     signals:
@@ -37,6 +46,7 @@ class VeryCDDetailPage: public QObject
         VeryCDDetailPage(QStringList& p);
         void print();
         void load();
+        QList<Ed2kItem*> items;
     private slots:
         void pageArrived(bool error);
     private:

@@ -4,6 +4,7 @@
 VeryCDListPage::VeryCDListPage(QString f, int n)
 {
     pageNum=n;
+    loaded=false;
    //read the reg expr
     QFile file(f);
     file.open(QIODevice::ReadOnly);
@@ -59,6 +60,7 @@ void VeryCDListPage::pageArrived(bool error)
     {
         //detailPages[i]->load();
     }
+    loaded=true;
     emit updated();
 }
 
@@ -77,12 +79,18 @@ void VeryCDDetailPage::pageArrived(bool error)
     rx.setCaseSensitivity(Qt::CaseSensitive);
     int lastPos=0;
     int count=0;
+//    items.clear();//is this necessary?
     while(lastPos!=-1)
     {
         count++;
         lastPos=rx.indexIn(rawContent, lastPos+1 );
         QStringList captured=rx.capturedTexts();
         qDebug()<<captured[1]<<captured[2]<<captured[3]<<captured[4];
+        Ed2kItem* item=new Ed2kItem();
+        item->link=captured[2];
+        item->name=captured[3];
+        item->size=captured[4];
+        items<<item;
     }
     qDebug()<<"total found:"<<count;
     delete http;
