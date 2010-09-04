@@ -3,6 +3,7 @@
 
 VeryCDListPage::VeryCDListPage(QString f, int n)
 {
+    pageNum=n;
    //read the reg expr
     QFile file(f);
     file.open(QIODevice::ReadOnly);
