@@ -17,6 +17,7 @@ class VeryCDListPage: public QObject
     public:
         VeryCDListPage(QString f, int n);
         QList<VeryCDDetailPage*> detailPages;
+        int pageNum;
     private slots:
         void pageArrived(bool error);
     signals:

@@ -12,7 +12,7 @@ int main(int argc, char** argv)
     */
     MainWindow win;
     win.show();
-    VeryCDListPage page1("ziliao.exp", 1);
-    win.addPage(&page1);
+    //VeryCDListPage page1("ziliao.exp", 15);
+    //win.addPage(&page1);
     return app.exec();
 }

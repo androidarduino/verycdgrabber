@@ -13,8 +13,20 @@ class MainWindow: public QMainWindow
     private:
         Ui::MainWindow win;
         QList<VeryCDListPage*> pages;
+        void page(int pageNum);
+        void nextPage();
+        void prevPage();
+        void firstPage();
+        void appendToCart();
+        void cartToClipboard();
+
+        int pageNumber;
+        QList<VeryCDDetailPage*> cart;
     public slots:
         void updated();
+
+private slots:
+    void on_actionNext_activated();
 };
 
 #endif

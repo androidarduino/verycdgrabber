@@ -3,12 +3,33 @@
 MainWindow::MainWindow()
 {
     win.setupUi(this);
+    firstPage();
 }
 
 void MainWindow::addPage(VeryCDListPage* page)
 {
     pages<<page;
     connect(page, SIGNAL(updated()), this, SLOT(updated()));
+}
+
+void MainWindow::prevPage()
+{
+    if(--pageNumber>1)
+        page(pageNumber);
+}
+
+void MainWindow::firstPage()
+{
+    page(1);
+}
+
+void MainWindow::page(int pageNum)
+{
+    pageNumber=pageNum;
+    qDebug()<<pageNum<<"here";
+    VeryCDListPage* page=new VeryCDListPage("ziliao.exp",pageNum);
+    qDebug()<<pageNum<<"added";
+    addPage(page);
 }
 
 void MainWindow::updated()
@@ -31,5 +52,13 @@ void MainWindow::updated()
             items<<item;
         }
     }
-    win.treeWidget->insertTopLevelItems(0, items);
+    QTreeWidgetItem* pageItem=new QTreeWidgetItem(0);
+    pageItem->setText(0, QString("Page %1").arg(pageNumber));
+    pageItem->addChildren(items);
+    win.treeWidget->insertTopLevelItem(0, pageItem);
+}
+
+void MainWindow::on_actionNext_activated()
+{
+    page(++pageNumber);
 }
