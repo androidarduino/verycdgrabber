@@ -9,9 +9,10 @@ class CartWindow: public QDialog
     Q_OBJECT
     public:
         CartWindow();
+        QList<VeryCDDetailPage*> pages;
+        int exec();
     private:
         Ui::Dialog dlg;
-        QList<VeryCDDetailPage*> pages;
 };
 
 #endif

@@ -26,11 +26,10 @@ class MainWindow: public QMainWindow
         QList<VeryCDListPage*> pages;
         void page(int pageNum);
         void firstPage();
-        void appendToCart();
+        void getLinks();
         void cartToClipboard();
-
+        CartWindow cart;
         int pageNumber;
-        QList<VeryCDDetailPage*> cart;
     public slots:
         void updated();
 

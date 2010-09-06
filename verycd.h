@@ -47,11 +47,14 @@ class VeryCDDetailPage: public QObject
         void print();
         void load();
         QList<Ed2kItem*> items;
+        bool loaded;
     private slots:
         void pageArrived(bool error);
     private:
         QHttp* http;
         QString rawContent;
+    signals:
+        void loadComplete();
 };
 
 class VeryCDGrabber: public QObject
