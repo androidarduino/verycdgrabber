@@ -13,6 +13,7 @@
 
 #include "ui_mainwindow.h"
 #include "verycd.h"
+#include "cartwindow.h"
 
 class MainWindow: public QMainWindow
 {
@@ -36,6 +37,15 @@ class MainWindow: public QMainWindow
 private slots:
     void on_actionPrevious_activated();
     void on_actionNext_activated();
+};
+
+class VeryCDItem: public QTreeWidgetItem
+{
+    public:
+        VeryCDItem(QTreeWidget* parent, QStringList& data, VeryCDDetailPage* pagelink);
+        VeryCDDetailPage* page;
+    private:
+        bool operator<(const QTreeWidgetItem& other)const;
 };
 
 #endif
