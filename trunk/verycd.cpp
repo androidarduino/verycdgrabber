@@ -92,6 +92,7 @@ void VeryCDDetailPage::pageArrived(bool error)
         item->size=captured[4];
         items<<item;
     }
+    loaded=true;
     qDebug()<<"total found:"<<count;
     delete http;
 }
@@ -113,6 +114,7 @@ VeryCDDetailPage::VeryCDDetailPage(QStringList& p)
     files=p[i++];
     size=p[i++];
     comments=p[i++];
+    loaded=false;
 }
 
 void VeryCDDetailPage::load()

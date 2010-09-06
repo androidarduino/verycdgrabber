@@ -6,6 +6,21 @@ MainWindow::MainWindow()
     firstPage();
 }
 
+void MainWindow::getLinks()
+{
+    QList<QTreeWidgetItem*> items=win.treeWidget->selectedItems();
+    cart.pages.clear();
+    for(int i=0;i<items.size();i++)
+    {
+        VeryCDItem* vi= dynamic_cast<VeryCDItem*>(items[i]);
+        if(vi==NULL)
+            continue;
+        vi->page->load();
+        cart.pages<<vi->page;
+    }
+    cart.exec();
+}
+
 void MainWindow::addPage(VeryCDListPage* page)
 {
     pages<<page;
@@ -67,8 +82,7 @@ void MainWindow::updated()
 void MainWindow::on_actionNext_activated()
 {
     page(++pageNumber);
-    CartWindow w;
-    w.exec();
+    getLinks();//temporary for testing purpose
 }
 
 void MainWindow::on_actionPrevious_activated()
@@ -110,5 +124,6 @@ bool VeryCDItem::operator <(const QTreeWidgetItem &other)const
         float resultOther=num.toFloat()*factor;
         return resultThis < resultOther;
     }
+    return QTreeWidgetItem::operator<(other);
 }
 
