@@ -26,6 +26,11 @@ void MainWindow::page(int pageNum)
     addPage(page);
 }
 
+VeryCDItem::VeryCDItem(QTreeWidget* parent, QStringList& data, VeryCDDetailPage* pagelink):QTreeWidgetItem(parent, data)
+{
+    page=pagelink;
+}
+
 void MainWindow::updated()
 {
     qDebug()<<"........................update message received.......................";
@@ -42,7 +47,7 @@ void MainWindow::updated()
             data<<p.link<<p.language<<p.year<<p.created;
             data<<p.modified<<p.publisher<<p.picture<<p.comments;
             data<<p.description;
-            QTreeWidgetItem* item=new QTreeWidgetItem((QTreeWidget*)0, data);
+            VeryCDItem* item=new VeryCDItem((QTreeWidget*)0, data, (*detailPages)[j]);
             items<<item;
         }
         QTreeWidgetItem* pageItem=new QTreeWidgetItem(0);
@@ -55,13 +60,15 @@ void MainWindow::updated()
         if(!duplicate&&pages[i]->loaded)
             win.treeWidget->insertTopLevelItem(0, pageItem);
         //else
-            //delete pageItem;
+        //delete pageItem;
     }
 }
 
 void MainWindow::on_actionNext_activated()
 {
     page(++pageNumber);
+    CartWindow w;
+    w.exec();
 }
 
 void MainWindow::on_actionPrevious_activated()
@@ -70,3 +77,38 @@ void MainWindow::on_actionPrevious_activated()
         page(pageNumber);
 
 }
+
+bool VeryCDItem::operator <(const QTreeWidgetItem &other)const
+{
+    int column = treeWidget()->sortColumn();
+    if(column==1)//files count
+        return text(column).toInt() < other.text(column).toInt();
+    if(column==2)//size
+    {
+        QString col, num, unit;
+        col=text(column);
+        num=col.left(col.length()-2);
+        unit=col.right(2);
+        float factor=1;//assume KB
+        if(unit=="MB")
+            factor=1024;
+        if(unit=="GB")
+            factor=1024*1024;
+        if(unit=="TB")
+            factor=1024*1024*1024;
+        float resultThis=num.toFloat()*factor;
+        col=other.text(column);
+        num=col.left(col.length()-2);
+        unit=col.right(2);
+        factor=1;//assume KB
+        if(unit=="MB")
+            factor=1024;
+        if(unit=="GB")
+            factor=1024*1024;
+        if(unit=="TB")
+            factor=1024*1024*1024;
+        float resultOther=num.toFloat()*factor;
+        return resultThis < resultOther;
+    }
+}
+
