@@ -26,14 +26,17 @@ class MainWindow: public QMainWindow
         QList<VeryCDListPage*> pages;
         void page(int pageNum);
         void firstPage();
-        void getLinks();
+        void getLinks(bool updateCart);
         void cartToClipboard();
         CartWindow cart;
         int pageNumber;
     public slots:
         void updated();
+        void loadLink();
 
 private slots:
+    void on_actionPage_Range_activated();
+    void on_actionView_cart_activated();
     void on_actionPrevious_activated();
     void on_actionNext_activated();
 };

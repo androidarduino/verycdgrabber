@@ -47,7 +47,7 @@ class VeryCDDetailPage: public QObject
         void print();
         void load();
         QList<Ed2kItem*> items;
-        bool loaded;
+        bool loading, loaded;
     private slots:
         void pageArrived(bool error);
     private:

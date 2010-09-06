@@ -11,8 +11,11 @@ class CartWindow: public QDialog
         CartWindow();
         QList<VeryCDDetailPage*> pages;
         int exec();
+        void update();
     private:
         Ui::Dialog dlg;
+    private slots:
+        void copyToClipboard();
 };
 
 #endif

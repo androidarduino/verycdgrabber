@@ -4,21 +4,28 @@ MainWindow::MainWindow()
 {
     win.setupUi(this);
     firstPage();
+    connect(win.treeWidget, SIGNAL(itemSelectionChanged()), this, SLOT(loadLink()));
 }
 
-void MainWindow::getLinks()
+void MainWindow::getLinks(bool updateCart)
 {
     QList<QTreeWidgetItem*> items=win.treeWidget->selectedItems();
-    cart.pages.clear();
+    if(updateCart)
+        cart.pages.clear();
     for(int i=0;i<items.size();i++)
     {
         VeryCDItem* vi= dynamic_cast<VeryCDItem*>(items[i]);
         if(vi==NULL)
             continue;
         vi->page->load();
-        cart.pages<<vi->page;
+        if(updateCart)
+            cart.pages<<vi->page;
     }
-    cart.exec();
+}
+
+void MainWindow::loadLink()
+{
+    getLinks(false);
 }
 
 void MainWindow::addPage(VeryCDListPage* page)
@@ -29,7 +36,7 @@ void MainWindow::addPage(VeryCDListPage* page)
 
 void MainWindow::firstPage()
 {
-    page(1);
+    page(21);
 }
 
 void MainWindow::page(int pageNum)
@@ -82,7 +89,6 @@ void MainWindow::updated()
 void MainWindow::on_actionNext_activated()
 {
     page(++pageNumber);
-    getLinks();//temporary for testing purpose
 }
 
 void MainWindow::on_actionPrevious_activated()
@@ -127,3 +133,14 @@ bool VeryCDItem::operator <(const QTreeWidgetItem &other)const
     return QTreeWidgetItem::operator<(other);
 }
 
+
+void MainWindow::on_actionView_cart_activated()
+{
+    getLinks(true);
+    cart.exec();
+}
+
+void MainWindow::on_actionPage_Range_activated()
+{
+
+}
