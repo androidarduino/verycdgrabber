@@ -176,6 +176,7 @@
    <addaction name="actionNext"/>
    <addaction name="actionPrevious"/>
    <addaction name="actionPage_Range"/>
+   <addaction name="actionView_cart"/>
    <addaction name="actionSelect_All"/>
    <addaction name="actionDeselect_All"/>
    <addaction name="actionReferenced_Page"/>
@@ -183,7 +184,6 @@
    <addaction name="actionDescription"/>
    <addaction name="actionCopy_to_Clipboard"/>
    <addaction name="actionAdd_to_cart"/>
-   <addaction name="actionView_cart"/>
   </widget>
   <action name="actionFirst">
    <property name="text">

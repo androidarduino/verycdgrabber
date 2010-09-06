@@ -90,7 +90,8 @@ void VeryCDDetailPage::pageArrived(bool error)
         item->link=captured[2];
         item->name=captured[3];
         item->size=captured[4];
-        items<<item;
+        if(item->link!="")
+            items<<item;
     }
     loaded=true;
     qDebug()<<"total found:"<<count;
@@ -114,15 +115,18 @@ VeryCDDetailPage::VeryCDDetailPage(QStringList& p)
     files=p[i++];
     size=p[i++];
     comments=p[i++];
-    loaded=false;
+    loaded=loading=false;
 }
 
 void VeryCDDetailPage::load()
 {
+    if(loaded||loading)
+        return;
     qDebug()<<server<<link<<" is now loading";
     http=new QHttp(server);
     connect(http, SIGNAL(done(bool)), this, SLOT(pageArrived(bool)));
     http->get(link);
+    loading=true;
 }
 
 void VeryCDDetailPage::print()
