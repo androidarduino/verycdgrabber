@@ -74,6 +74,12 @@
    </item>
    <item>
     <widget class="QTreeWidget" name="treeWidget" >
+     <property name="selectionMode" >
+      <enum>QAbstractItemView::MultiSelection</enum>
+     </property>
+     <property name="sortingEnabled" >
+      <bool>true</bool>
+     </property>
      <column>
       <property name="text" >
        <string>File Name</string>
