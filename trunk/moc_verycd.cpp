@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'verycd.h'
 **
-** Created: Mon Sep 6 16:36:44 2010
+** Created: Tue Sep 7 10:49:29 2010
 **      by: The Qt Meta Object Compiler version 59 (Qt 4.4.0)
 **
 ** WARNING! All changes made in this file will be lost!
