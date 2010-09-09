@@ -66,7 +66,7 @@ void VeryCDListPage::pageArrived(bool error)
 
 void VeryCDDetailPage::pageArrived(bool error)
 {
-    qDebug()<<"Detail page arrived with error: "<<error<<http->error();
+//    qDebug()<<"Detail page arrived with error: "<<error<<http->error();
     if(error)
     {
         http->get(link);
@@ -82,19 +82,24 @@ void VeryCDDetailPage::pageArrived(bool error)
 //    items.clear();//is this necessary?
     while(lastPos!=-1)
     {
-        count++;
         lastPos=rx.indexIn(rawContent, lastPos+1 );
         QStringList captured=rx.capturedTexts();
+//        qDebug()<<captured[1]<<captured[2]<<captured[3]<<captured[4];
+    if(link=="/topics/2844948/")
         qDebug()<<captured[1]<<captured[2]<<captured[3]<<captured[4];
         Ed2kItem* item=new Ed2kItem();
         item->link=captured[2];
         item->name=captured[3];
         item->size=captured[4];
         if(item->link!="")
+        {
             items<<item;
+            count++;
+        }
     }
     loaded=true;
-    qDebug()<<"total found:"<<count;
+    if(files.toInt()!=count)
+        qDebug()<<"$$$$$$$$$$$$$$$$$$ should found: "<<files <<"total found:"<<count<<link;
     delete http;
 }
 
