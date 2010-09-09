@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ui version="4.0">
+<ui version="4.0" >
  <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
-  <property name="geometry">
+ <widget class="QDialog" name="Dialog" >
+  <property name="geometry" >
    <rect>
     <x>0</x>
     <y>0</y>
@@ -10,60 +9,60 @@
     <height>671</height>
    </rect>
   </property>
-  <property name="windowTitle">
+  <property name="windowTitle" >
    <string>Dialog</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="verticalLayout" >
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QHBoxLayout" name="horizontalLayout" >
      <item>
-      <widget class="QToolButton" name="downButton">
-       <property name="text">
+      <widget class="QToolButton" name="downButton" >
+       <property name="text" >
         <string>down</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="toolButton_2">
-       <property name="text">
+      <widget class="QToolButton" name="toolButton_2" >
+       <property name="text" >
         <string>...</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="toolButton_3">
-       <property name="text">
+      <widget class="QToolButton" name="toolButton_3" >
+       <property name="text" >
         <string>...</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="toolButton_4">
-       <property name="text">
+      <widget class="QToolButton" name="toolButton_4" >
+       <property name="text" >
         <string>...</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="toolButton_5">
-       <property name="text">
+      <widget class="QToolButton" name="toolButton_5" >
+       <property name="text" >
         <string>...</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="toolButton_6">
-       <property name="text">
+      <widget class="QToolButton" name="toolButton_6" >
+       <property name="text" >
         <string>...</string>
        </property>
       </widget>
      </item>
      <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
+      <spacer name="horizontalSpacer" >
+       <property name="orientation" >
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeHint" stdset="0">
+       <property name="sizeHint" stdset="0" >
         <size>
          <width>40</width>
          <height>20</height>
@@ -74,41 +73,48 @@
     </layout>
    </item>
    <item>
-    <widget class="QTreeWidget" name="treeWidget">
-     <property name="selectionMode">
+    <widget class="QLabel" name="status" >
+     <property name="text" >
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTreeWidget" name="treeWidget" >
+     <property name="selectionMode" >
       <enum>QAbstractItemView::MultiSelection</enum>
      </property>
-     <property name="sortingEnabled">
+     <property name="sortingEnabled" >
       <bool>true</bool>
      </property>
      <column>
-      <property name="text">
+      <property name="text" >
        <string>File Name</string>
       </property>
      </column>
      <column>
-      <property name="text">
+      <property name="text" >
        <string>Size</string>
       </property>
      </column>
      <column>
-      <property name="text">
+      <property name="text" >
        <string>Link</string>
       </property>
      </column>
      <column>
-      <property name="text">
+      <property name="text" >
        <string>From Title</string>
       </property>
      </column>
     </widget>
    </item>
    <item>
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="orientation">
+    <widget class="QDialogButtonBox" name="buttonBox" >
+     <property name="orientation" >
       <enum>Qt::Horizontal</enum>
      </property>
-     <property name="standardButtons">
+     <property name="standardButtons" >
       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
      </property>
     </widget>
@@ -123,11 +129,11 @@
    <receiver>Dialog</receiver>
    <slot>accept()</slot>
    <hints>
-    <hint type="sourcelabel">
+    <hint type="sourcelabel" >
      <x>248</x>
      <y>254</y>
     </hint>
-    <hint type="destinationlabel">
+    <hint type="destinationlabel" >
      <x>157</x>
      <y>274</y>
     </hint>
@@ -139,11 +145,11 @@
    <receiver>Dialog</receiver>
    <slot>reject()</slot>
    <hints>
-    <hint type="sourcelabel">
+    <hint type="sourcelabel" >
      <x>316</x>
      <y>260</y>
     </hint>
-    <hint type="destinationlabel">
+    <hint type="destinationlabel" >
      <x>286</x>
      <y>274</y>
     </hint>
