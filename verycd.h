@@ -5,6 +5,7 @@
 #include <QClipboard>
 #include <QFile>
 #include <QDataStream>
+#include <QTreeWidgetItem>
 #include <QDebug>
 #include <QTextCodec>
 
@@ -78,6 +79,24 @@ class VeryCDHistory: public QObject
         void loadHistory(QString file);
         QSet<QString> links;
 };
+
+class VeryCDItem: public QTreeWidgetItem
+{
+    public:
+        VeryCDItem(QTreeWidget* parent, QStringList& data, VeryCDDetailPage* pagelink);
+        VeryCDDetailPage* page;
+    private:
+        bool operator<(const QTreeWidgetItem& other)const;
+};
+
+class CartItem: public QTreeWidgetItem
+{
+    public:
+        CartItem(QTreeWidget* parent, QStringList& data);
+    private:
+        bool operator<(const QTreeWidgetItem& other)const;
+};
+
 
 
 #endif

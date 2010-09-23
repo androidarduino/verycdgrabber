@@ -1,4 +1,6 @@
 #include "mainwindow.h"
+#include <QInputDialog>
+#include <QMessageBox>
 
 MainWindow::MainWindow()
 {
@@ -36,7 +38,25 @@ void MainWindow::addPage(VeryCDListPage* page)
 
 void MainWindow::firstPage()
 {
-    page(21);
+    page(1);
+}
+
+void MainWindow::pageRange()
+{
+    QString input=QInputDialog::getText(this, "Input Page Range", "Key in page range(eg: 1-3):");
+    QRegExp rx("\\s*([0-9]+)\\s*[-|/|\\\\|?]?\\s*([0-9]+)");
+    rx.indexIn(input);
+    int fromPage=rx.cap(1).toInt();
+    int toPage=rx.cap(2).toInt();
+    if(fromPage>toPage||fromPage<=0)
+        return;
+    if(toPage-fromPage>30)
+    {
+        QMessageBox::warning(this, "Error","Loading 30+ pages will take very long time, aborted.");
+        return;
+    }
+    for(int i=fromPage;i<=toPage;i++)
+        page(i);
 }
 
 void MainWindow::page(int pageNum)
@@ -110,6 +130,8 @@ bool VeryCDItem::operator <(const QTreeWidgetItem &other)const
         num=col.left(col.length()-2);
         unit=col.right(2);
         float factor=1;//assume KB
+        if(unit=="B")
+            factor=1/1024;
         if(unit=="MB")
             factor=1024;
         if(unit=="GB")
@@ -121,6 +143,8 @@ bool VeryCDItem::operator <(const QTreeWidgetItem &other)const
         num=col.left(col.length()-2);
         unit=col.right(2);
         factor=1;//assume KB
+        if(unit=="B")
+            factor=1/1024;
         if(unit=="MB")
             factor=1024;
         if(unit=="GB")

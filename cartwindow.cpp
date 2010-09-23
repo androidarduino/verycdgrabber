@@ -27,6 +27,50 @@ int CartWindow::exec()
     return QDialog::exec();
 }
 
+bool CartItem::operator <(const QTreeWidgetItem& other)const
+{
+    int column = treeWidget()->sortColumn();
+    if(column==1)//size
+    {
+        QString col, num, unit;
+        col=text(column);
+        num=col.left(col.length()-2);
+        unit=col.right(2);
+        float factor=1;//assume KB
+        if(unit=="B")
+            factor=1/1024;
+        if(unit=="MB")
+            factor=1024;
+        if(unit=="GB")
+            factor=1024*1024;
+        if(unit=="TB")
+            factor=1024*1024*1024;
+        float resultThis=num.toFloat()*factor;
+        col=other.text(column);
+        num=col.left(col.length()-2);
+        unit=col.right(2);
+        factor=1;//assume KB
+        if(unit=="B")
+            factor=1/1024;
+        if(unit=="MB")
+            factor=1024;
+        if(unit=="GB")
+            factor=1024*1024;
+        if(unit=="TB")
+            factor=1024*1024*1024;
+        float resultOther=num.toFloat()*factor;
+        return resultThis < resultOther;
+    }
+    return QTreeWidgetItem::operator<(other);
+}
+
+CartItem::CartItem(QTreeWidget* parent, QStringList& data):QTreeWidgetItem(parent, data)
+{
+
+}
+
+
+
 void CartWindow::update()
 {
     QString statusLoad;
@@ -42,7 +86,7 @@ void CartWindow::update()
             {
                 QStringList data;
                 data<<it->name<<it->size<<it->link<<pages[i]->title;
-                QTreeWidgetItem* linkitem=new QTreeWidgetItem((QTreeWidget*)0, data);
+                CartItem* linkitem=new CartItem((QTreeWidget*)0, data);
                 dlg.treeWidget->addTopLevelItem(linkitem);
                 //calculate the size and count
                 statusFiles++;
