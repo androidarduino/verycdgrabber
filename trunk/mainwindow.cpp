@@ -41,7 +41,7 @@ void MainWindow::firstPage()
     page(1);
 }
 
-void MainWindow::pageRange()
+void MainWindow::on_actionPage_Range_activated()
 {
     QString input=QInputDialog::getText(this, "Input Page Range", "Key in page range(eg: 1-3):");
     QRegExp rx("\\s*([0-9]+)\\s*[-|/|\\\\|?]?\\s*([0-9]+)");
@@ -164,7 +164,3 @@ void MainWindow::on_actionView_cart_activated()
     cart.exec();
 }
 
-void MainWindow::on_actionPage_Range_activated()
-{
-
-}

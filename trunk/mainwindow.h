@@ -39,6 +39,5 @@ private slots:
     void on_actionView_cart_activated();
     void on_actionPrevious_activated();
     void on_actionNext_activated();
-    void pageRange();
 };
 #endif
