@@ -39,15 +39,6 @@ private slots:
     void on_actionView_cart_activated();
     void on_actionPrevious_activated();
     void on_actionNext_activated();
+    void pageRange();
 };
-
-class VeryCDItem: public QTreeWidgetItem
-{
-    public:
-        VeryCDItem(QTreeWidget* parent, QStringList& data, VeryCDDetailPage* pagelink);
-        VeryCDDetailPage* page;
-    private:
-        bool operator<(const QTreeWidgetItem& other)const;
-};
-
 #endif
