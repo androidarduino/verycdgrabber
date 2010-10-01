@@ -11,8 +11,14 @@ int main(int argc, char** argv)
     grabber.update();
     */
     MainWindow win;
+    
+    
+    VeryCDHistory history;
+    QSet<QString> set;
+    set<<"test1"<<"test2"<<"test3";
+    history.appendHistory(set);
+    
+    
     win.show();
-    //VeryCDListPage page1("ziliao.exp", 15);
-    //win.addPage(&page1);
     return app.exec();
 }

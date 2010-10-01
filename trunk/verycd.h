@@ -73,11 +73,12 @@ class VeryCDHistory: public QObject
 {
     Q_OBJECT
     public:
-        VeryCDHistory(QString historyFile="verycd.history");
+        VeryCDHistory(const QString& historyFile="history.txt");
         bool hasLink(QString link);
+        void appendHistory(const QSet<QString>& links);
     private:
-        void loadHistory(QString file);
-        QSet<QString> links;
+        QSet<QString> d_links;
+        QString d_historyFile;
 };
 
 class VeryCDItem: public QTreeWidgetItem
