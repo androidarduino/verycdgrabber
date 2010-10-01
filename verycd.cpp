@@ -152,7 +152,40 @@ void VeryCDDetailPage::print()
     qDebug()<<"\rcomments: \t"<<comments;
 }
 
+VeryCDHistory::VeryCDHistory(const QString& historyFile)
+{
+    d_historyFile=historyFile;
+    QFile file(d_historyFile);
+    file.open(QIODevice::ReadOnly);
+    QTextStream in(&file);
+    while(!in.atEnd())
+    {
+        d_links<<in.readLine();
+    }
+    file.close();
+    qDebug()<<"total history items: "<<d_links<<d_links.count();
+}
 
+bool VeryCDHistory::hasLink(QString link)
+{
+    return d_links.contains(link);
+}
+
+void VeryCDHistory::appendHistory(const QSet<QString>& links)
+{
+    QSet<QString> l(links);
+    //remove those exists in history
+    foreach(QString i, l)
+        if(d_links.contains(i))
+            l.remove(i);
+    //write to file
+    QFile file(d_historyFile);
+    file.open(QIODevice::Append);
+    QTextStream out(&file);
+    foreach(QString i, l)
+        out<<i<<endl;
+    file.close();
+}
 
 
 
