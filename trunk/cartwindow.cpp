@@ -78,6 +78,7 @@ void CartWindow::update()
     float statusSize=0;
     dlg.treeWidget->clear();
     int unloadedPage=0;
+    QBrush brush(Qt::lightGray);
     for(int i=0;i<pages.size();i++)
     {
         if(pages[i]->loaded)//if the links are loaded
@@ -87,6 +88,13 @@ void CartWindow::update()
                 QStringList data;
                 data<<it->name<<it->size<<it->link<<pages[i]->title;
                 CartItem* linkitem=new CartItem((QTreeWidget*)0, data);
+                if(d_history.hasLink(it->link))
+                {
+                    linkitem->setForeground(0, brush);
+                    linkitem->setForeground(1, brush);
+                    linkitem->setForeground(2, brush);
+                    linkitem->setForeground(3, brush);
+                }
                 dlg.treeWidget->addTopLevelItem(linkitem);
                 //calculate the size and count
                 statusFiles++;

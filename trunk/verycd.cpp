@@ -163,7 +163,6 @@ VeryCDHistory::VeryCDHistory(const QString& historyFile)
         d_links<<in.readLine();
     }
     file.close();
-    qDebug()<<"total history items: "<<d_links<<d_links.count();
 }
 
 bool VeryCDHistory::hasLink(QString link)
