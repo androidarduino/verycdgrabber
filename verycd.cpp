@@ -155,9 +155,15 @@ void VeryCDDetailPage::print()
 VeryCDHistory::VeryCDHistory(const QString& historyFile)
 {
     d_historyFile=historyFile;
+    update();
+}
+
+void VeryCDHistory::update()
+{
     QFile file(d_historyFile);
     file.open(QIODevice::ReadOnly);
     QTextStream in(&file);
+    d_links.clear();
     while(!in.atEnd())
     {
         d_links<<in.readLine();
@@ -184,6 +190,7 @@ void VeryCDHistory::appendHistory(const QSet<QString>& links)
     foreach(QString i, l)
         out<<i<<endl;
     file.close();
+    update();
 }
 
 

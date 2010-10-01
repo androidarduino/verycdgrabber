@@ -77,6 +77,7 @@ class VeryCDHistory: public QObject
         bool hasLink(QString link);
         void appendHistory(const QSet<QString>& links);
     private:
+        void update();
         QSet<QString> d_links;
         QString d_historyFile;
 };
@@ -97,7 +98,5 @@ class CartItem: public QTreeWidgetItem
     private:
         bool operator<(const QTreeWidgetItem& other)const;
 };
-
-
 
 #endif
