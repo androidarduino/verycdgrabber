@@ -1,10 +1,12 @@
-#include <QMimeData>
+//#include <QMimeData>
+#include <QFileDialog>
+#include <QMessageBox>
 #include "cartwindow.h"
 
 CartWindow::CartWindow()
 {
     dlg.setupUi(this);
-    connect(dlg.downButton, SIGNAL(clicked()), this, SLOT(copyToClipboard()));
+    connect(dlg.copyButton, SIGNAL(clicked()), this, SLOT(copyToClipboard()));
 }
 
 void CartWindow::copyToClipboard()
@@ -14,11 +16,11 @@ void CartWindow::copyToClipboard()
     {
         links+=QString("%1\r\n").arg(dlg.treeWidget->topLevelItem(i)->text(2));
     }
-    QMimeData data;
-    data.setHtml(links);
+//    QMimeData data;
+//    data.setHtml(links);
     //QApplication::clipboard()->setMimeData(&data);
     QApplication::clipboard()->setText(links);
-    qDebug()<<links<<" are the links";
+    appendHistory();
 }
 
 int CartWindow::exec()
@@ -118,4 +120,49 @@ void CartWindow::update()
     else
         statusLoad="All pages loaded";
     dlg.status->setText(QString("Total %1 MB in %2 files. %3").arg(statusSize).arg(statusFiles).arg(statusLoad));
+}
+
+void CartWindow::on_refreshButton_clicked()
+{
+    update();
+}
+
+void CartWindow::on_clearButton_clicked()
+{
+    dlg.treeWidget->clearSelection();
+}
+
+void CartWindow::on_saveButton_clicked()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save to file"), "links.downlist", tr("Downlist files (*.downlist)"));
+    if(fileName=="")
+        return;
+    QFile file(fileName);
+    file.open(QIODevice::WriteOnly);
+    QTextStream out(&file);
+    for(int i=0;i<dlg.treeWidget->topLevelItemCount();i++)
+    {
+        QString link=dlg.treeWidget->topLevelItem(i)->text(2);
+        if(!d_history.hasLink(link))
+            out<<link<<endl;
+    }
+    file.close();
+    appendHistory();
+}
+
+void CartWindow::appendHistory()
+{
+    //now append these to history
+    QSet<QString> linkset;
+    for(int i=0;i<dlg.treeWidget->topLevelItemCount();i++)
+    {
+        linkset<<dlg.treeWidget->topLevelItem(i)->text(2);
+    }
+    int ret=QMessageBox::question(this,"Confirm","Do you want to mark these links as downloaded?", QMessageBox::Yes, QMessageBox::No);
+    //qDebug()<<ret<<QMessageBox::Yes;
+    if(ret==QMessageBox::Yes)
+    {
+        d_history.appendHistory(linkset);
+        update();
+    }
 }

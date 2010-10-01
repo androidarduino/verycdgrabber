@@ -35,6 +35,7 @@ class MainWindow: public QMainWindow
         void loadLink();
 
 private slots:
+    void on_actionClear_All_activated();
     void on_actionPage_Range_activated();
     void on_actionView_cart_activated();
     void on_actionPrevious_activated();

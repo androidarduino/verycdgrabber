@@ -16,7 +16,11 @@ class CartWindow: public QDialog
         Ui::Dialog dlg;
         VeryCDHistory d_history;
     private slots:
+        void on_saveButton_clicked();
+        void on_clearButton_clicked();
+        void on_refreshButton_clicked();
         void copyToClipboard();
+        void appendHistory();
 };
 
 #endif

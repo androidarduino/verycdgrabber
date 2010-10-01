@@ -164,3 +164,8 @@ void MainWindow::on_actionView_cart_activated()
     cart.exec();
 }
 
+
+void MainWindow::on_actionClear_All_activated()
+{
+    win.treeWidget->clearSelection();
+}
