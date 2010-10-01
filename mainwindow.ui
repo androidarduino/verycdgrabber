@@ -126,29 +126,15 @@
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
-   <widget class="QMenu" name="menuView">
+   <widget class="QMenu" name="menuView_2">
     <property name="title">
      <string>Selection</string>
     </property>
-    <addaction name="actionSelect_All"/>
-    <addaction name="actionDeselect_All"/>
-    <addaction name="actionCopy_to_Clipboard"/>
-   </widget>
-   <widget class="QMenu" name="menuView_2">
-    <property name="title">
-     <string>View</string>
-    </property>
-    <addaction name="actionReferenced_Page"/>
-    <addaction name="actionAll_Files"/>
-    <addaction name="actionDescription"/>
-   </widget>
-   <widget class="QMenu" name="menuShopping_cart">
-    <property name="title">
-     <string>Shopping cart</string>
-    </property>
-    <addaction name="actionAdd_to_cart"/>
+    <addaction name="actionClear_All"/>
     <addaction name="actionView_cart"/>
-    <addaction name="actionCopy_Cart_to_Clipboard"/>
+    <addaction name="separator"/>
+    <addaction name="actionBlock"/>
+    <addaction name="actionUnblock"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -157,9 +143,7 @@
     <addaction name="actionAbout"/>
    </widget>
    <addaction name="menuPage"/>
-   <addaction name="menuView"/>
    <addaction name="menuView_2"/>
-   <addaction name="menuShopping_cart"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -177,13 +161,7 @@
    <addaction name="actionPrevious"/>
    <addaction name="actionPage_Range"/>
    <addaction name="actionView_cart"/>
-   <addaction name="actionSelect_All"/>
-   <addaction name="actionDeselect_All"/>
-   <addaction name="actionReferenced_Page"/>
-   <addaction name="actionAll_Files"/>
-   <addaction name="actionDescription"/>
-   <addaction name="actionCopy_to_Clipboard"/>
-   <addaction name="actionAdd_to_cart"/>
+   <addaction name="actionClear_All"/>
   </widget>
   <action name="actionFirst">
    <property name="text">
@@ -210,44 +188,14 @@
     <string>Exit</string>
    </property>
   </action>
-  <action name="actionSelect_All">
+  <action name="actionClear_All">
    <property name="text">
-    <string>Select All</string>
-   </property>
-  </action>
-  <action name="actionDeselect_All">
-   <property name="text">
-    <string>Deselect All</string>
-   </property>
-  </action>
-  <action name="actionReferenced_Page">
-   <property name="text">
-    <string>Referenced Page</string>
-   </property>
-  </action>
-  <action name="actionAll_Files">
-   <property name="text">
-    <string>All Files</string>
-   </property>
-  </action>
-  <action name="actionDescription">
-   <property name="text">
-    <string>Description</string>
-   </property>
-  </action>
-  <action name="actionCopy_to_Clipboard">
-   <property name="text">
-    <string>Copy to Clipboard</string>
-   </property>
-  </action>
-  <action name="actionAdd_to_cart">
-   <property name="text">
-    <string>Append to Cart</string>
+    <string>Clear</string>
    </property>
   </action>
   <action name="actionView_cart">
    <property name="text">
-    <string>View Cart</string>
+    <string>Show Cart</string>
    </property>
   </action>
   <action name="actionOpen">
@@ -255,14 +203,24 @@
     <string>Open</string>
    </property>
   </action>
-  <action name="actionCopy_Cart_to_Clipboard">
-   <property name="text">
-    <string>Copy Cart to Clipboard</string>
-   </property>
-  </action>
   <action name="actionAbout">
    <property name="text">
     <string>About</string>
+   </property>
+  </action>
+  <action name="actionBlock">
+   <property name="text">
+    <string>Block</string>
+   </property>
+  </action>
+  <action name="actionUnblock">
+   <property name="text">
+    <string>Unblock</string>
+   </property>
+  </action>
+  <action name="actionSubscribe">
+   <property name="text">
+    <string>Subscribe</string>
    </property>
   </action>
  </widget>
