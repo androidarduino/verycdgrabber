@@ -6,21 +6,6 @@
 CartWindow::CartWindow()
 {
     dlg.setupUi(this);
-    connect(dlg.copyButton, SIGNAL(clicked()), this, SLOT(copyToClipboard()));
-}
-
-void CartWindow::copyToClipboard()
-{
-    QString links="";
-    for(int i=0;i<dlg.treeWidget->topLevelItemCount();i++)
-    {
-        links+=QString("%1\r\n").arg(dlg.treeWidget->topLevelItem(i)->text(2));
-    }
-//    QMimeData data;
-//    data.setHtml(links);
-    //QApplication::clipboard()->setMimeData(&data);
-    QApplication::clipboard()->setText(links);
-    appendHistory();
 }
 
 int CartWindow::exec()
@@ -165,4 +150,27 @@ void CartWindow::appendHistory()
         d_history.appendHistory(linkset);
         update();
     }
+}
+
+void CartWindow::on_delButton_clicked()
+{
+    //delete the selected items
+    foreach(QTreeWidgetItem* i, dlg.treeWidget->selectedItems())
+            delete i;
+}
+
+void CartWindow::on_copyButton_clicked()
+{
+    QString links="";
+    for(int i=0;i<dlg.treeWidget->topLevelItemCount();i++)
+    {
+        QString link=dlg.treeWidget->topLevelItem(i)->text(2);
+        if(!d_history.hasLink(link))
+            links+=QString("%1\r\n").arg(link);
+    }
+//    QMimeData data;
+//    data.setHtml(links);
+    //QApplication::clipboard()->setMimeData(&data);
+    QApplication::clipboard()->setText(links);
+    appendHistory();
 }
