@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Cart</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="verycd.qrc">
+    <normaloff>:/new/icons/cart.svg</normaloff>:/new/icons/cart.svg</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -115,7 +119,9 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="verycd.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>

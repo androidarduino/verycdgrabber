@@ -173,6 +173,6 @@ void MainWindow::on_actionClear_All_activated()
 void MainWindow::on_actionAbout_triggered()
 {
     QMessageBox box;
-    box.setIconPixmap(QPixmap(":/icons/vercd.png"));;
+    box.setIconPixmap(QPixmap(":/icons/vercd.png"));
     box.about(this, "About VeryCDGrabber","VeryCD Grabber, a download helper for verycd. \n Created by Vrcats. \n Visit http://www.vrcats.com for support and tutorials.");
 }
