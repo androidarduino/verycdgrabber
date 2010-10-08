@@ -12,7 +12,10 @@ FORMS += mainwindow.ui \
 
 # Input
 HEADERS += verycd.h \
-    mainwindow.h cartwindow.h
+    mainwindow.h \
+    cartwindow.h
 SOURCES += main.cpp \
     verycd.cpp \
-    mainwindow.cpp cartwindow.cpp
+    mainwindow.cpp \
+    cartwindow.cpp
+RESOURCES += verycd.qrc
