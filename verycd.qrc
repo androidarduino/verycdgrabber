@@ -1,5 +1,11 @@
 <RCC>
     <qresource prefix="/new/icons">
+        <file>next.png</file>
+        <file>prev.svg</file>
+        <file>cart.svg</file>
+        <file>vercd.svg</file>
+        <file>next.svg</file>
+        <file>range.svg</file>
         <file>vercd.png</file>
     </qresource>
 </RCC>
