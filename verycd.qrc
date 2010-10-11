@@ -6,5 +6,10 @@
         <file>next.svg</file>
         <file>range.svg</file>
         <file>vercd.png</file>
+        <file>clear.svg</file>
+        <file>copy.svg</file>
+        <file>refresh.svg</file>
+        <file>delete.svg</file>
+        <file>save.svg</file>
     </qresource>
 </RCC>
