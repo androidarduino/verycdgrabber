@@ -36,6 +36,7 @@ void VeryCDListPage::pageArrived(bool error)
     }
     QTextCodec *codec = QTextCodec::codecForName("UTF-8");
     rawContent = codec->toUnicode(http->readAll());
+	qDebug()<<"raw content: "<<rawContent;
     QRegExp rx(mainExpr);
     rx.setMinimal(true);
     rx.setCaseSensitivity(Qt::CaseSensitive);
