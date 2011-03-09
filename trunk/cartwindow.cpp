@@ -61,8 +61,11 @@ CartItem::CartItem(QTreeWidget* parent, QStringList& data):QTreeWidgetItem(paren
 void CartWindow::update()
 {
     QString statusLoad;
+    bool gray=false;
     int statusFiles=0;
+    int nonGrayFiles=0;
     float statusSize=0;
+    float nonGraySize=0;
     dlg.treeWidget->clear();
     int unloadedPage=0;
     QBrush brush(Qt::lightGray);
@@ -81,10 +84,13 @@ void CartWindow::update()
                     linkitem->setForeground(1, brush);
                     linkitem->setForeground(2, brush);
                     linkitem->setForeground(3, brush);
+                    gray=true;
                 }
                 dlg.treeWidget->addTopLevelItem(linkitem);
                 //calculate the size and count
                 statusFiles++;
+                if(!gray)
+                    nonGrayFiles++;
                 float factor=1.0;
                 float num=it->size.left(it->size.length()-2).toFloat();
                 QString unit=it->size.right(2);
@@ -95,6 +101,9 @@ void CartWindow::update()
                 if(unit=="TB")
                     factor=1024*1024*1024;
                 statusSize+=num*factor/1024;
+                if(!gray)
+                    nonGraySize+=num*factor/1024;
+                gray=false;
             }
         }
         else
@@ -104,7 +113,7 @@ void CartWindow::update()
         statusLoad= QString("%1 pages still loading, please wait...").arg(unloadedPage);
     else
         statusLoad="All pages loaded";
-    dlg.status->setText(QString("Total %1 MB in %2 files. %3").arg(statusSize).arg(statusFiles).arg(statusLoad));
+    dlg.status->setText(QString("Total %1 MB in %2 files. %3, %4 MB to be downloaded in %5 files").arg(statusSize).arg(statusFiles).arg(statusLoad).arg(nonGraySize).arg(nonGrayFiles));
 }
 
 void CartWindow::on_refreshButton_clicked()
