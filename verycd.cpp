@@ -109,6 +109,8 @@ VeryCDDetailPage::VeryCDDetailPage(QStringList& p)
     int i=0;
     server=p[i++];
     picture=p[i++];
+    if(picture.length()>200)
+        picture="unaviable";
     category=p[i++];
     link=p[i++];
     title=p[i++];
