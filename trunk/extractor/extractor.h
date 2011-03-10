@@ -13,7 +13,6 @@ class QPageExtractor: public QObject
     Q_OBJECT
     public:
         QPageExtractor(QString fileName, QString fieldName="");//constructor by feeding setting files
-        const QList<QMap<QString, QString> >& getAll();//get all extractions in a list of map
 //        const QMap<QString, QString>& getRowAsMap(int index);//get all extractions in a list of map
         const QStringList getRow(int row);//get all extractions in a list of map
         const QString get(int row, QString column);//get extraction value with column and row
@@ -38,6 +37,18 @@ class QPageExtractor: public QObject
         int d_retry;//retry times
         int d_count;//rows found
         void parse();
+        int columnByName(QString& columnName);
+};
+
+class QPageExtractorTester: public QObject
+{
+    Q_OBJECT
+    public:
+        QPageExtractorTester(QPageExtractor* extractor);
+    public slots:
+        void updated();
+    private:
+        QPageExtractor* d_extractor;
 };
 
 #endif
