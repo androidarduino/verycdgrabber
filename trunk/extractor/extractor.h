@@ -29,7 +29,7 @@ class QPageExtractor: public QObject
     private:
         QHttp* d_http;//http object pointer
         bool d_finished;//indicate whether it is finished
-        QString d_server, d_link;//server and path
+        QString d_server, d_link, d_encoding;//server, path and encoding
         QString d_rawContent;//raw content retrieved
         QList<QStringList> d_extractions;//each list item contains an occurance found
         QString d_expression;//regular expression

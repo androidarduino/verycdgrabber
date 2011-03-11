@@ -2,10 +2,11 @@
 
 QPageExtractor::QPageExtractor(QString fileName, QString fieldName)//constructor, fileName is a setting file
 {
-    QTextCodec *codec = QTextCodec::codecForName("UTF-8");
+    QTextCodec *codec = QTextCodec::codecForName("UTF-8");//ini file is always utf-8
     QSettings settings(fileName, QSettings::IniFormat);
     settings.setIniCodec(codec);
     d_expression=settings.value(fieldName+"/expression").toString();
+    d_encoding=settings.value(fieldName+"/encoding").toString();
     d_columnNames=settings.value(fieldName+"/names").toString().split(",");
     d_server=settings.value(fieldName+"/server").toString();
     d_link=settings.value(fieldName+"/path").toString();
@@ -18,7 +19,7 @@ void QPageExtractor::pageArrived(bool error)
 {
     if(!error)
     {
-        QTextCodec *codec = QTextCodec::codecForName("UTF-8");
+        QTextCodec *codec = QTextCodec::codecForName(d_encoding.toAscii());
         d_rawContent=codec->toUnicode(d_http->readAll());
         parse();
     }
@@ -60,13 +61,13 @@ void QPageExtractor::parse()
         d_count++;
         lastPos=rx.indexIn(d_rawContent, lastPos+1);
         QStringList captured=rx.capturedTexts();
-        qDebug()<<rx.capturedTexts()[1];
         captured.removeAt(0);
         if(captured.join("")!="")
             d_extractions<<captured;
     }
-//    foreach(QStringList l, d_extractions)
-//        qDebug()<<"Extracted: "<<l;
+    foreach(QStringList l, d_extractions)
+        qDebug()<<"Extracted: "<<l;
+    qDebug()<<"Total extracted: "<<count();
     if(count()>0)
         emit(updated());
 }
