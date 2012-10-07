@@ -133,7 +133,13 @@ void VeryCDDetailPage::load()
     qDebug()<<server<<link<<" is now loading";
     http=new QHttp(server);
     connect(http, SIGNAL(done(bool)), this, SLOT(pageArrived(bool)));
-    http->get(link);
+    //to fix the login problem temporarily
+    QHttpRequestHeader header("GET", link);
+    header.setValue("Host", "www.verycd.com");
+    header.setValue("Cookie", "uchome_auth=878e3SD9RwEEqqhc%2Be7nlKk2xjRVke9IyoqQdPOBWAxk8L%2BiNdnHBandz3hvQsTainb6clBvmct3VX9hIjqzQ4pu10oO; uchome_loginuser=vrcats; collectentry=1; uchome_view_tid=376427; sid=db0c166930aaff99dc229af1a127f1d68def3a7c; member_id=7181820; member_name=vrcats; mgroupId=93; pass_hash=1bd45fa44f53aea7d426d15b0ae83a42; rememberme=false; __utma=1.548072307.1349242133.1349432235.1349434981.6; __utmb=1.3.10.1349434981; __utmc=1; __utmz=1.1349388407.4.3.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided); favoritefolder=1; Hm_lvt_c7849bb40e146a37d411700cb7696e46=1349309769501,1349388411505,1349432238257,1349434983961; Hm_lpvt_c7849bb40e146a37d411700cb7696e46=1349436310099");
+    http->setHost("www.verycd.com");
+    http->request(header);
+    //http->get(link);
     loading=true;
 }
 
